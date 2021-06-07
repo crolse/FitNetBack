@@ -1,0 +1,26 @@
+.DS_Store
+node_modules
+
+
+# package-lock.json
+package-lock.json
+
+# local env files
+.env
+
+
+# error log
+error.log
+
+# Editor directories and files
+.idea
+api/.idea
+app/.idea
+.vscode
+app/.vscode
+api/.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
