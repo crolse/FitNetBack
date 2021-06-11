@@ -1,8 +1,8 @@
-const express = require("express"); 
+const express = require("express");
 const cors = require("cors");
 const noc = require('no-console')  // require package
 const app = express();
-noc(); 
+noc();
 
 
 app.use(cors());
@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes declaration
 require("./app/routes/user.routes")(app);
+require("./app/routes/folder.routes")(app);
 
 
 // set port, listen for requests
