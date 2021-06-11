@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize, Sequelize) => {
     const User = sequelize.define("user", {
         //#TODO check uuid version
-        uuid: {
+        uuidUser: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV1,
             primaryKey: true
