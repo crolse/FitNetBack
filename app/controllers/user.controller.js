@@ -15,9 +15,9 @@ exports.signUp = (req, res) => {
 
     // Hash password 
     const options = {
-        algorithm: "sha256" ,
+        algorithm: "sha256",
     }
-    var hashedPassword = passwordHash.generate(req.body.password ,options);
+    var hashedPassword = passwordHash.generate(req.body.password, options);
 
 
     const user = {
@@ -25,17 +25,23 @@ exports.signUp = (req, res) => {
         password: hashedPassword,
     };
 
-    // Save a user in database
-    User.create(user)
+    //Verification email exist
+
+    User.findOne({ where: { email: req.body.email } })
         .then(data => {
-            res.send(data);
+            if (data != null) {
+                res.status(406).send({
+                    message: "Email adress already exist"
+                });
+            }
+            else {
+                // Save a user in database
+                User.create(user)
+                    .then(data => {
+                        res.send(data);
+                    })
+            }
         })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while saving user."
-            });
-        });
 };
 //#endregion
 
