@@ -16,7 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 // routes declaration
 require("./app/routes/user.routes")(app);
 require("./app/routes/folder.routes")(app);
-
+require("./app/routes/exercise.routes")(app);
+require("./app/routes/workout.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -25,9 +26,9 @@ app.listen(PORT, () => {
 });
 
 const db = require("./app/models");
-/*db.sequelize.sync();*/
+db.sequelize.sync();
 
 // delete and resynchronise tables if necessary
-db.sequelize.sync({ force: true }).then(() => {
+/*db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
-});
+});*/
