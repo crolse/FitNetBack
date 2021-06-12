@@ -22,8 +22,36 @@ db.sequelize = sequelize;
 
 db.user = require("./user.model.js")(sequelize, Sequelize);
 db.folder = require("./folder.model.js")(sequelize, Sequelize);
+db.category = require("./category.model.js")(sequelize, Sequelize);
+db.exercise = require("./exercise.model.js")(sequelize, Sequelize);
+db.workout = require("./workout.model.js")(sequelize, Sequelize);
+db.workoutExercise = require("./workoutExercise.model.js")(sequelize, Sequelize);
+db.series = require("./series.model.js")(sequelize, Sequelize);
+db.seriesPerformed = require("./seriesPerformed.model.js")(sequelize, Sequelize);
+db.history = require("./history.model.js")(sequelize, Sequelize);
 
-//creation of the association between the tables
+// Creation of the association between the tables
+// Folder to user
 db.folder.belongsTo(db.user, { foreignKey: 'uuidAuthor' });
+// Exercise to category
+db.exercise.belongsTo(db.category, { foreignKey: 'uuidCategory' });
+// Exercise to user
+db.exercise.belongsTo(db.user, { foreignKey: 'uuidAuthorExercise' });
+// Workout to user
+db.workout.belongsTo(db.user, { foreignKey: 'uuidAuthorWorkout' });
+// Workout to folder
+db.workout.belongsTo(db.folder, { foreignKey: 'uuidFolder' });
+// workoutExercise to workout
+db.workoutExercise.belongsTo(db.workout, { foreignKey: 'uuidWorkout' });
+// WorkoutExercise to exercise 
+db.workoutExercise.belongsTo(db.exercise, { foreignKey: "uuidExercise" })
+// Series to workoutExercise
+db.series.belongsTo(db.workoutExercise, { foreignKey: "uuidWorkoutExercise" })
+//Series to history (SeriesPerformed)
+db.series.belongsToMany(db.history, { through: db.seriesPerformed, foreignKey: "uuidHistory" });
+//history to series (SeriesPerformed)
+db.history.belongsToMany(db.series, { through: db.seriesPerformed, foreignKey: "uuidSeries" });
+// History to Workout
+db.history.belongsTo(db.workout, { foreignKey: "uuidWorkout" })
 
 module.exports = db;
