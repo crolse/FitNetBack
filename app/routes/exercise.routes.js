@@ -5,7 +5,7 @@ module.exports = app => {
     // Create a new exercise
     router.post("/create", exercise.create);
     // delete an Exercise
-    router.delete("/delete", exercise.delete);
+    router.delete("/delete/:uuidUser/:nameExercise", exercise.delete);
     // recover all Exercise of a user
     router.get("/recover/:uuidUser", exercise.recover);
 

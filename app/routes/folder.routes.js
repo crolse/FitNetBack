@@ -5,7 +5,7 @@ module.exports = app => {
     // Create a new folder
     router.post("/create", folder.create);
     // delete a folder
-    router.delete("/delete", folder.delete);
+    router.delete("/delete/:uuidUser/:nameFolder", folder.delete);
     // recover all folder
     router.get("/recover/:uuidUser", folder.recover);
 

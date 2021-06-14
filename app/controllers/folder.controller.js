@@ -42,7 +42,7 @@ exports.create = (req, res) => {
 //#region Delete a folder
 exports.delete = (req, res) => {
     // Verification of fields
-    if (!req.body.nameFolder || !req.body.uuidUser) {
+    if (!req.params.nameFolder || !req.params.uuidUser) {
         res.status(400).send({
             message: "Empty fields"
         });

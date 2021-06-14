@@ -42,15 +42,15 @@ exports.create = (req, res) => {
 //#region Delete an Exercise
 exports.delete = (req, res) => {
     // Verification of fields
-    if (!req.body.nameExercise || !req.body.uuidUser) {
+    if (!req.params.nameExercise || !req.params.uuidUser) {
         res.status(400).send({
             message: "Empty fields"
         });
         return;
     }
     const exercise = {
-        nameExercise: req.body.nameExercise,
-        uuidAuthorExercise: req.body.uuidUser,
+        nameExercise: req.params.nameExercise,
+        uuidAuthorExercise: req.params.uuidUser,
     };
 
     //Verification email exist
