@@ -7,7 +7,7 @@ module.exports = app => {
     // delete an Exercise
     router.delete("/delete", exercise.delete);
     // recover all Exercise of a user
-    router.get("/recover", exercise.recover);
+    router.get("/recover/:uuidUser", exercise.recover);
 
     app.use('/api/exercise', router);
 };

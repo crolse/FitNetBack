@@ -80,7 +80,7 @@ exports.delete = (req, res) => {
 //#region Recover all exercise of a User
 exports.recover = (req, res) => {
     // Verification of fields
-    if (!req.body.uuidUser) {
+    if (!req.params.uuidUser) {
         res.status(400).send({
             message: "Empty fields"
         });
@@ -89,7 +89,7 @@ exports.recover = (req, res) => {
 
     // #TODO ADD Exercise BY DEFAULT
     // Recover all Exercise of a user 
-    Exercise.findAll({ where: { uuidAuthorExercise: req.body.uuidUser } })
+    Exercise.findAll({ where: { uuidAuthorExercise: req.params.uuidUser } })
         .then(data => {
             res.send(data);
         })

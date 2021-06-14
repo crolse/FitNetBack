@@ -49,8 +49,8 @@ exports.delete = (req, res) => {
         return;
     }
     const folder = {
-        nameFolder: req.body.nameFolder,
-        uuidAuthor: req.body.uuidUser,
+        nameFolder: req.params.nameFolder,
+        uuidAuthor: req.params.uuidUser,
     };
 
     //Verification email exist
@@ -80,16 +80,17 @@ exports.delete = (req, res) => {
 //#region Recover all folder of a User
 exports.recover = (req, res) => {
     // Verification of fields
-    if (!req.body.uuidUser) {
+    if (!req.params.uuidUser) {
         res.status(400).send({
             message: "Empty fields"
         });
         return;
     }
+    console.log(req.params.uuidUser)
 
 
     // Recover all folder of a user
-    Folder.findAll({ where: { uuidAuthor: req.body.uuidUser } })
+    Folder.findAll({ where: { uuidAuthor: req.params.uuidUser } })
         .then(data => {
             res.send(data);
         })

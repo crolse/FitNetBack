@@ -4,7 +4,7 @@ module.exports = app => {
 
     // Create a new Workout
     router.post("/create", workout.create);
-    router.get("/recover", workout.recover);
+    router.get("/recover/:uuidUser", workout.recover);
     // delete a workout
     /* router.post("/signIn", user.signIn);*/
 

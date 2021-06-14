@@ -55,7 +55,7 @@ exports.recover = (req, res) => {
             model: User,
             required: true,
             attributes: [],
-            where: { uuidUser: req.body.uuidUser }
+            where: { uuidUser: req.params.uuidUser }
 
         }
     }).then(data => { res.send(data) })

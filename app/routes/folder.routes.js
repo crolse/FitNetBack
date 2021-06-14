@@ -7,7 +7,7 @@ module.exports = app => {
     // delete a folder
     router.delete("/delete", folder.delete);
     // recover all folder
-    router.get("/recover", folder.recover);
+    router.get("/recover/:uuidUser", folder.recover);
 
     app.use('/api/folder', router);
 };
