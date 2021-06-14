@@ -47,10 +47,10 @@ db.workoutExercise.belongsTo(db.workout, { foreignKey: 'uuidWorkout' });
 db.workoutExercise.belongsTo(db.exercise, { foreignKey: "uuidExercise" })
 // Series to workoutExercise
 db.series.belongsTo(db.workoutExercise, { foreignKey: "uuidWorkoutExercise" })
-//Series to history (SeriesPerformed)
-db.series.belongsToMany(db.history, { through: db.seriesPerformed, foreignKey: "uuidHistory" });
-//history to series (SeriesPerformed)
-db.history.belongsToMany(db.series, { through: db.seriesPerformed, foreignKey: "uuidSeries" });
+//SeriesPerformed to history (SeriesPerformed)
+db.seriesPerformed.belongsTo(db.history, { foreignKey: "uuidHistory" });
+//seriesPerformed to series (SeriesPerformed)
+db.seriesPerformed.belongsTo(db.series, { foreignKey: "uuidSeries" });
 // History to Workout
 db.history.belongsTo(db.workout, { foreignKey: "uuidWorkout" })
 

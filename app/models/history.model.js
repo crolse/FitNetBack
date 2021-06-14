@@ -8,10 +8,7 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: DataTypes.UUIDV1,
             primaryKey: true
         },
-        date: {
-            type: Sequelize.DATE,
-            allowNull: false
-        }
+
     });
 
     return History;

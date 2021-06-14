@@ -12,6 +12,7 @@ exports.create = (uuidWorkoutExercise, weight, reps, rest) => {
         reps: reps,
         rest: rest
     };
+
     Series.create(series)
 };
 //#endregion

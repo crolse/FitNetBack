@@ -2,7 +2,12 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
     const SeriesPerformed = sequelize.define("seriesPerformed", {
-
+        uuidSeriesPerformed: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
+            primaryKey: true
+        },
+        
         weight: {
             // We can put a weight of 9,5kg
             type: Sequelize.DOUBLE,

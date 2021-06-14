@@ -1,6 +1,7 @@
 const db = require("../models");
 
 const Workout = db.workout
+const User = db.user
 const WorkoutExercise = require("./WorkoutExercise.controllers")
 const Op = db.Sequelize.Op;
 
@@ -22,6 +23,7 @@ exports.create = (req, res) => {
             if (data != null) {
                 res.status(406).send({
                     message: "A workout with the same name already exist"
+
                 });
             }
             else {
@@ -40,4 +42,22 @@ exports.create = (req, res) => {
             }
         })
 };
+//#endregion
+//#region recover workout of a user
+exports.recover = (req, res) => {
+    Workout.findAll({
+        attributes: [
+            "nameWorkout",
+            "uuidFolder",
+            "uuidWorkout"
+        ],
+        include: {
+            model: User,
+            required: true,
+            attributes: [],
+            where: { uuidUser: req.body.uuidUser }
+
+        }
+    }).then(data => { res.send(data) })
+}
 //#endregion
