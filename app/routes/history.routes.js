@@ -4,9 +4,8 @@ module.exports = app => {
 
     // Create a new history
     router.post("/save", history.create);
-
-    // delete a workout
-    /* router.post("/signIn", user.signIn);*/
+    // recover history
+    router.get("/recover/:uuidUser", history.recover);
 
     app.use('/api/history', router);
 };

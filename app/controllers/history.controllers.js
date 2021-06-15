@@ -2,11 +2,13 @@ const { seriesPerformed } = require("../models");
 const db = require("../models");
 const History = db.history;
 const Op = db.Sequelize.Op;
+const sequelize = db.sequelize
+const { QueryTypes } = require('sequelize');
 SeriesPerformed = require("./SeriesPerformed.controller")
 
 
 
-// #region Create an Exercise
+// #region Create history
 exports.create = (req, res) => {
 
 
@@ -26,3 +28,15 @@ exports.create = (req, res) => {
 
 };
 //#endregion
+
+//#region Recover history for a user 
+exports.recover = (req, res) => {
+    sequelize.query("SELECT nameWorkout , histories.createdAt , SUM(reps * weight) As WorkLoad  FROM histories JOIN seriesperformeds on seriesperformeds.uuidHistory = histories.uuidHistory JOIN workouts on workouts.uuidWorkout = histories.uuidWorkout WHERE uuidAuthorWorkout ='" + req.params.uuidUser.toString() + "'order by histories.createdAt ", { type: QueryTypes.SELECT }).then(data => { res.send(data) })
+}
+//#endregion
+
+
+//#region Recover history for a user 
+/*SELECT nameWorkout , histories.createdAt , SUM(reps * weight) As WorkLoad  FROM histories
+JOIN seriesperformeds on seriesperformeds.uuidHistory = histories.uuidHistory
+JOIN workouts on workouts.uuidWorkout = histories.uuidWorkout*/

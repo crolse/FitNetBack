@@ -27,9 +27,9 @@ exports.create = (uuidExercise, uuidWorkout, series) => {
 };
 //#endregion
 
-//#region recover details of trainning
+//#region recover details of Workout
 exports.recover = (req, res) => {
     sequelize.query("SELECT nameExercise , reps , weight , rest , workoutexercises.uuidWorkoutExercise ,uuidSeries  from workoutexercises join series on workoutexercises.uuidWorkoutExercise = series.uuidWorkoutExercise join exercises on workoutexercises.uuidExercise = exercises.uuidExercise where uuidWorkout ='" + req.params.uuidWorkout.toString() + "'order by uuidWorkoutExercise", { type: QueryTypes.SELECT }).then(data => { res.send(data) })
 }
-
+//#endregion
 
