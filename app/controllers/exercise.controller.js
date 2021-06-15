@@ -7,7 +7,7 @@ const Op = db.Sequelize.Op;
 // #region Create an Exercise
 exports.create = (req, res) => {
     // Verification of fields
-    if (!req.body.nameExercise || !req.body.uuidUser) {
+    if (!req.body.nameExercise || !req.body.uuidUser || !req.body.uuidCategory) {
         res.status(400).send({
             message: "fields cannot be empty"
         });
@@ -17,6 +17,7 @@ exports.create = (req, res) => {
     const exercise = {
         nameExercise: req.body.nameExercise,
         uuidAuthorExercise: req.body.uuidUser,
+        uuidCategory: req.body.uuidCategory
     };
 
     //Verification exercise exist

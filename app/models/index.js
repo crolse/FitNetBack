@@ -34,7 +34,7 @@ db.history = require("./history.model.js")(sequelize, Sequelize);
 // Folder to user
 db.folder.belongsTo(db.user, { foreignKey: 'uuidAuthor' });
 // Exercise to category
-//db.exercise.belongsTo(db.category, { foreignKey: 'uuidCategory' });
+db.exercise.belongsTo(db.category, { foreignKey: 'uuidCategory' });
 // Exercise to user
 db.exercise.belongsTo(db.user, { foreignKey: 'uuidAuthorExercise' });
 // Workout to user
@@ -53,5 +53,6 @@ db.seriesPerformed.belongsTo(db.history, { foreignKey: "uuidHistory" });
 db.seriesPerformed.belongsTo(db.series, { foreignKey: "uuidSeries" });
 // History to Workout
 db.history.belongsTo(db.workout, { foreignKey: "uuidWorkout" })
+
 
 module.exports = db;

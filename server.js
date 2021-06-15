@@ -20,6 +20,7 @@ require("./app/routes/exercise.routes")(app);
 require("./app/routes/workout.routes")(app);
 require("./app/routes/workoutExercise.routes")(app);
 require("./app/routes/history.routes")(app);
+require("./app/routes/category.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
