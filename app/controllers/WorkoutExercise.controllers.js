@@ -29,7 +29,7 @@ exports.create = (uuidExercise, uuidWorkout, series) => {
 
 //#region recover details of Workout
 exports.recover = (req, res) => {
-    sequelize.query("SELECT nameExercise , reps , weight , rest , workoutexercises.uuidWorkoutExercise ,uuidSeries  from workoutexercises join series on workoutexercises.uuidWorkoutExercise = series.uuidWorkoutExercise join exercises on workoutexercises.uuidExercise = exercises.uuidExercise where uuidWorkout ='" + req.params.uuidWorkout.toString() + "'order by uuidWorkoutExercise", { type: QueryTypes.SELECT }).then(data => { res.send(data) })
+    sequelize.query("SELECT nameExercise , GROUP_CONCAT(reps) as reps , GROUP_CONCAT(weight) as weight , GROUP_CONCAT(rest) as rest , GROUP_CONCAT(uuidSeries) as uuidSeries, workoutexercises.uuidWorkoutExercise   from workoutexercises join series on workoutexercises.uuidWorkoutExercise = series.uuidWorkoutExercise join exercises on workoutexercises.uuidExercise = exercises.uuidExercise where uuidWorkout ='" + req.params.uuidWorkout.toString() + "'GROUP by workoutexercises.uuidWorkoutExercise ", { type: QueryTypes.SELECT }).then(data => { res.send(data) })
 }
 //#endregion
 
