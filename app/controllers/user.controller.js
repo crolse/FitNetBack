@@ -67,6 +67,7 @@ exports.signIn = (req, res) => {
         else {
             // password verification
             let checkPassword = passwordHash.verify(req.body.password, value.dataValues.password)
+            
             if (checkPassword == true) {
                 res.status(200).json({
                     uuidUser: value.dataValues.uuidUser,

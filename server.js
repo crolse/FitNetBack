@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const noc = require('no-console')  // require package
 const app = express();
-noc();
+
 
 
 app.use(cors());
